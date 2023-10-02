@@ -1,6 +1,6 @@
 import {subtractHours} from "src/lib/date";
 
-interface IPagination<T> {
+export interface IPagination<T> {
     pagination: {
         page: number;
         size: number;
@@ -9,9 +9,18 @@ interface IPagination<T> {
     data: T;
 }
 
+export interface IComment {
+    id: number;
+    created: string;
+    text: string;
+    author: number;
+    parent: number | null;
+    likes: number;
+}
+
 const today = new Date();
 
-const commentsPage1: IPagination<any[]> = {
+const commentsPage1: IPagination<IComment[]> = {
     pagination: {
         page: 1,
         size: 6,

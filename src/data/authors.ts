@@ -9,7 +9,13 @@ import img8 from "src/assets/avatars/palpatine.jpeg";
 import img9 from "src/assets/avatars/general.jpeg";
 import img10 from "src/assets/avatars/chew.jpeg";
 
-const authors: any[] = [
+export interface IAuthor {
+    id: number;
+    name: string;
+    avatar: string;
+}
+
+const authors: IAuthor[] = [
     {
         id: 1,
         name: "Obi-Wan Kenobi",

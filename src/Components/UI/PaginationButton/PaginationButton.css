@@ -1,0 +1,22 @@
+.pagination-button {
+    background: #383838;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 14px;
+    transition: opacity ease-out 0.2s;
+    margin: 30px auto 0;
+}
+
+.pagination-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 425px) {
+    .pagination-button {
+        margin: 10px auto 0;
+    }
+}
