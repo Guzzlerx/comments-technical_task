@@ -1,0 +1,48 @@
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-info__avatar {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+}
+
+.user-info__name,
+.user-info__time {
+    font-size: 14px;
+}
+
+.user-info__name {
+    margin-bottom: 5px;
+}
+
+.user-info__time {
+    opacity: 0.4;
+}
+
+@media screen and (max-width: 670px) {
+    .user-info__avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user-info__name,
+    .user-info__time {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .user-info {
+        gap: 12px;
+    }
+
+    .user-info__avatar {
+        width: 35px;
+        height: 35px;
+    }
+}
