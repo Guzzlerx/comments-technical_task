@@ -19,14 +19,13 @@ const CommentFeed: FC = () => {
     const [totalLikesAmount, setTotalLikesAmount] = useState<number>(0);
 
     const getCommentsAndLikesNumber = async () => {
+        console.log("test for github pages");
         try {
             const responses = await Promise.all<IPagination<IComment[]>>([
                 getCommentsRequest(1),
                 getCommentsRequest(2),
                 getCommentsRequest(3),
             ]);
-
-            console.log(responses);
 
             const totalLikes = responses.reduce((page, nextPage) => {
                 const likesInPage = nextPage.data.reduce(
