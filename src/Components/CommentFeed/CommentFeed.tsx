@@ -26,6 +26,8 @@ const CommentFeed: FC = () => {
                 getCommentsRequest(3),
             ]);
 
+            console.log(responses);
+
             const totalLikes = responses.reduce((page, nextPage) => {
                 const likesInPage = nextPage.data.reduce(
                     (comment, nextComment) => comment + nextComment.likes,
