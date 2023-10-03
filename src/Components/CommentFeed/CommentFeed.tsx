@@ -18,40 +18,16 @@ const CommentFeed: FC = () => {
     const [totalCommentsAmount, setTotalCommentsAmount] = useState<number>(0);
     const [totalLikesAmount, setTotalLikesAmount] = useState<number>(0);
 
-    const getCommentsAndLikesNumber = async () => {
-        console.log("test for github pages");
-        try {
-            const responses = await Promise.all<IPagination<IComment[]>>([
-                getCommentsRequest(1),
-                getCommentsRequest(2),
-                getCommentsRequest(3),
-            ]);
-
-            const totalLikes = responses.reduce((page, nextPage) => {
-                const likesInPage = nextPage.data.reduce(
-                    (comment, nextComment) => comment + nextComment.likes,
-                    0,
-                );
-                return page + likesInPage;
-            }, 0);
-
-            const totalComments = responses.reduce(
-                (page, nextPage) => page + nextPage.data.length,
-                0,
-            );
-
-            setTotalCommentsAmount(totalComments);
-            setTotalLikesAmount(totalLikes);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     const onLoadMoreHandler = (): void => {
         getCommentsRequest(currentPage + 1)
             .then(({data}: IPagination<IComment[]>) => {
                 setCurrentPage((page) => page + 1);
                 setComments((comments) => [...comments, ...data]);
+                setTotalCommentsAmount((comments) => comments + data.length);
+                setTotalLikesAmount(
+                    (likes) =>
+                        likes + data.reduce((acc, val) => acc + val.likes, 0),
+                );
                 setIsPaginationSuccess(true);
             })
             .catch((err) => {
@@ -65,6 +41,10 @@ const CommentFeed: FC = () => {
             .then(({data, pagination}: IPagination<IComment[]>) => {
                 setComments(data);
                 setTotalPages(pagination.total_pages);
+                setTotalCommentsAmount(data.length);
+                setTotalLikesAmount(
+                    data.reduce((acc, val) => acc + val.likes, 0),
+                );
             })
             .catch((err) => console.error(err));
     };
@@ -78,7 +58,6 @@ const CommentFeed: FC = () => {
     useEffect(() => {
         getComments();
         getAuthors();
-        getCommentsAndLikesNumber();
     }, []);
 
     return (
