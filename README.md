@@ -1,7 +1,7 @@
 # Тестовое задание
 
 1. Репозиторий не форкать
-2. Выполненное задание загрузить на GitHub (GitHub Pages)
+2. Выполненное задание загрузить на GitHub (GitHub Pages) - https://guzzlerx.github.io/comments-technical_task/
 
 ## Задачи:
 
